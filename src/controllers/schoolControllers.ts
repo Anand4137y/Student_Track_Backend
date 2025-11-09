@@ -52,9 +52,9 @@ export const schoolLogin = async (req: Request, res: Response) => {
         const isPasswordMatch = await bcrypt.compare(password, school?.password);
         if (!isPasswordMatch) return res.status(400).json({ status: false, message: "Password doesn't match"});
 
-        const token = generateToken(school?.id);
+    const token = generateToken({ userId: school._id!.toString(), schoolId: school._id!.toString() });
 
-        return res.status(200).json({ status: true, message: "Login Successfully", data: school, token});
+    return res.status(200).json({ status: true, message: "Login Successfully", data: school, token });
         
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error"});

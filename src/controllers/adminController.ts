@@ -35,7 +35,7 @@ export const adminLogin = async (req: Request, res: Response) => {
          if (!isPassMatch) return res.status(400).json({ status: false, message: "password or Email doesn't match"});
          const token = generateToken(user._id.toString());
 
-         return res.status(200).json({ status: true, message: "Login Successfully", data: user, token});
+         return res.status(200).json({ status: true, message: "Login Successfully", data: user, token });
          
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal server error"});
